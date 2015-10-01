@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="FPApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Freshly Pressed</title>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <!--  <meta http-equiv="Content-Security-Policy" content="default-src *;">-->
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-controller="FPCtrl">
+    <ion-pane>
+        <ion-header-bar class="bar-dark">
+            <h1 class="title">Freshly Pressed2 ({{blogs.length}})</h1>            
+        </ion-header-bar>
+        <ion-content>
+           <ion-refresher pulling-text="Recargado blogs"  on-refresh="reload()"></ion-refresher>
+            <ion-list>
+                <ion-item ng-repeat="b in blogs" ng-click="show($index)">
+                    <img ng-src="{{b.avatar_URL}}" class="thumbnail" alt="">
+                    <h2 ng-bind-html="b.title"></h2>
+                    <p>{{b.name}}</p>
+                    <ion-option-button class="button-energized" ng-click="share($index)">
+                        Share
+                    </ion-option-button>                    
+                </ion-item>
+            </ion-list>
+            <ion-infinite-scroll on-infinite="loadMore()" ng-if="deviceReady">  
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-pane>
+  </body>
+</html>

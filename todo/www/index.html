@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="starter">
+  <head>
+    <meta charset="UTF-8">
+    <title>Freshly Pressed</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body  data-ng-controller="AppCtrl">
+
+    <ion-header-bar class="bar-balanced">
+      <h1 class="title">Freshly Pressed</h1>
+      <button class="button" data-ng-click="refresh()">
+        <i class="icon ion-refresh"></i>
+      </button>
+    </ion-header-bar>
+
+    <ion-content has-header="true" padding="true">
+      <ion-refresher on-refresh="refresh()">
+      </ion-refresher>
+      <div data-ng-show="!posts.length">
+        <br><br>
+        <center>
+          <h1>Tire para refrescar</h1>
+        </center>
+      </div>
+      <div class="card list" data-ng-repeat="p in posts">
+        <div class="item item-avatar-left">
+          <img data-ng-src="{{p.author.avatar_URL}}">
+          <h2>{{p.author.nice_name}}</h2>
+          <p><a href="{{p.author.URL}}">{{p.author.URL}}</a></p>
+          <div class="item item-body">
+            <h1>{{p.title}}</h1>
+            <div data-ng-bind-html= "p.content"></div>
+          </div>
+        </div>
+      </div>
+    </ion-content>     
+  </body>
+</html>
