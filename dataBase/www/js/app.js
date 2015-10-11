@@ -49,7 +49,7 @@ function AppCtrl($scope, $cordovaSQLite,$ionicPopup){
             if(res.rows.length>0){
                 $ionicPopup.alert({
                     title:"Msj",
-                    template: res.rows
+                    template: res.rows.item(5).firstname 
                 });                
             }
             else{
