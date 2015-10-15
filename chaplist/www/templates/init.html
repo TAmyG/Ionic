@@ -1,0 +1,34 @@
+<ion-view view-title="ChapList"   name="list-view">
+  <ion-nav-buttons side="right">
+    <button class="button icon-left ion-plus-round button-balanced" ng-click="newList()"></button>
+  </ion-nav-buttons>
+ 
+  <ion-content class="padding">
+    <div class="row"><div class="col text-center">
+      <h3 class="title">Welcome {{username}}!</h3>
+      This could be your Dashboard.
+      <br><br><br>
+      <div class="list card" data-ng-repeat="p in arrayListas">
+          <div class="item item-avatar">
+            <img src="http://www.payulatam.com/chile/sites/chile/files/comercios/soluciones/vende-con-pagina-web/sec2/solucion-carrito-de-compra.png">
+            <h2>{{p.n}}</h2>
+            <p>{{p.t}}</p>
+            <div class="item item-body">                
+                <p>{{p.d}} </p>
+              </div>
+          </div>
+          <div class="item tabs tabs-secondary tabs-icon-left">
+            <a class="tab-item" ng-click="see()" href="#/main/dash">
+              <i class="icon ion-android-radio-button-on"></i>
+              Ver
+            </a>
+            <a class="tab-item" ng-click="delete($index)" href="#">
+              <i class="icon ion-android-delete"></i>
+              Eliminar
+            </a>            
+          </div>
+      </div>
+     
+    </div></div>
+  </ion-content>
+</ion-view>
