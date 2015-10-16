@@ -21,6 +21,16 @@ angular.module('starter', ['ionic', 'ngMockE2E'])
 
 .config(function ($stateProvider, $urlRouterProvider, USER_ROLES) {
   $stateProvider
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
+  })
+  .state('registro', {
+    url: '/registro',
+    templateUrl: 'templates/registro.html',
+    controller: 'RegistroCtrl'
+  })
   .state('init', {
     url: '/init',    
     templateUrl: 'templates/init.html',
@@ -56,11 +66,12 @@ angular.module('starter', ['ionic', 'ngMockE2E'])
         }
     }
   });
-  //$urlRouterProvider.otherwise('/main/dash');
-    $urlRouterProvider.otherwise(function ($injector, $location) {
+  $urlRouterProvider.otherwise('login');
+    /*$urlRouterProvider.otherwise(function ($injector, $location) {
         var $state = $injector.get('$state');
-        $state.go('init');
-      });
+        //$state.go('init');
+        $state.go('login');
+      });*/
 })
 
 .run(function($httpBackend){

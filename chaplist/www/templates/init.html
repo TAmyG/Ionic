@@ -4,9 +4,7 @@
   </ion-nav-buttons>
  
   <ion-content class="padding">
-    <div class="row"><div class="col text-center">
-      <h3 class="title">Welcome {{username}}!</h3>
-      This could be your Dashboard.
+    <div class="row"><div class="col text-center">     
       <br><br><br>
       <div class="list card" data-ng-repeat="p in arrayListas">
           <div class="item item-avatar">
@@ -18,7 +16,7 @@
               </div>
           </div>
           <div class="item tabs tabs-secondary tabs-icon-left">
-            <a class="tab-item" ng-click="see()" href="#/main/dash">
+            <a class="tab-item" href="#/main/dash">
               <i class="icon ion-android-radio-button-on"></i>
               Ver
             </a>
