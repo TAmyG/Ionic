@@ -18,29 +18,18 @@ angular.module('starter')
 .controller('DashCtrl', function() {})
 /*------------------------------------------------------------------------------------*/
 .controller('LoginCtrl', function($scope, $state, 
-                                  $http, $ionicPopup) {
-    $scope.data = {};
-    
+                                  $http, $ionicPopup,
+                                  servicioWeb) {
+    $scope.data = {};    
     $scope.login = function (data){
-        var correct = 0;
-        arrayUser.forEach(function(e){
-            console.log(e);
-            if (e.username == data.username && e.password == data.password){
-                 $ionicPopup.alert({
-                    title: 'Bienvenido',
-                    template: 'Hola: <h1>'+data.username+'</h1>'
-                });
-                userActual = e;
-                $state.go('init',{}, {reload: true});
-                correct = 1;
-            }                
-        });
-        //si llega a este punto las credenciales son incorrectas
-        if(correct < 1)
-            $ionicPopup.alert({
-                        title: 'Fallo en el login',
-                        template: 'Credenciales incorrectas!!'
-            })
+       var result = servicioWeb.login(data);
+       popUp(result.title, result.msj, $ionicPopup);
+        //si el estado es correcto se redirige a la pantalla de login
+       if(result.state){
+          $state.go('init',{}, {reload: true});
+          $scope.data = {};
+       }    
+        
     }
     
     $scope.registro = function(){
@@ -56,10 +45,11 @@ angular.module('starter')
     $scope.addUser = function(data){
         var result = servicioWeb.registerUser(data);
         popUp(result.title, result.msj, $ionicPopup);
+        //si el estado es correcto se redirige a la pantalla de login
         if(result.state){
-            $state.go('login',{}, {reload: true});            
-        }
-            
+            $state.go('login',{}, {reload: true});
+            $scope.data = {};
+        }            
     };   
 })
 
@@ -69,9 +59,7 @@ angular.module('starter')
                                  servicioWeb) {
     
     $scope.data = {};
-    $scope.arrayListas = userActual.list;
-    console.log('se llamó a la api');
-    servicioWeb.getMovies();    
+     
     
     $scope.newList = function(){
          popUpNewList($scope, $ionicPopup, function(res){             
@@ -81,10 +69,7 @@ angular.module('starter')
     };
     
     $scope.delete = function($index){
-        console.log($scope.arrayListas.length);
-        //$scope.arrayListas.splice($index, 1);
-        userActual.list.splice($index, 1);
-        //$scope.arrayListas = arrayActual;
+       
     };
 })
 

@@ -3,7 +3,8 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ngMockE2E'])
+angular.module('starter', ['ionic', 'ngMockE2E', 
+                           'LocalStorageModule'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,6 +22,11 @@ angular.module('starter', ['ionic', 'ngMockE2E'])
 
 .config(function ($stateProvider, $urlRouterProvider, USER_ROLES) {
   $stateProvider
+  .state('main', {
+    url: '/',
+    abstract: true,
+    templateUrl: 'templates/main.html'
+  })
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
@@ -35,12 +41,7 @@ angular.module('starter', ['ionic', 'ngMockE2E'])
     url: '/init',    
     templateUrl: 'templates/init.html',
     controller: 'InitCtrl'
-  })
-  .state('main', {
-    url: '/',
-    abstract: true,
-    templateUrl: 'templates/main.html'
-  })
+  })  
   .state('main.dash', {
     url: 'main/dash',
     views: {
