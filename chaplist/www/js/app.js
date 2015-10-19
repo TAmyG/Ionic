@@ -28,7 +28,7 @@ angular.module('starter', ['ionic', 'ngMockE2E'])
   })
   .state('registro', {
     url: '/registro',
-    templateUrl: 'templates/registro.html',
+    templateUrl: 'templates/register.html',
     controller: 'RegistroCtrl'
   })
   .state('init', {
@@ -73,7 +73,8 @@ angular.module('starter', ['ionic', 'ngMockE2E'])
         $state.go('login');
       });*/
 })
-
+ 
 .run(function($httpBackend){
-  $httpBackend.whenGET(/templates\/\w+.*/).passThrough();
+  $httpBackend.whenGET(/templates\/\w+.*/).passThrough(); 
+  $httpBackend.whenGET('http://localhost:3000/tvshow').passThrough();
 });

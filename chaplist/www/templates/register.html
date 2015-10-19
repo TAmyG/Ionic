@@ -1,0 +1,61 @@
+<ion-view view-title="Sign-Up" name="login-view">
+  <i class="icon ion-search placeholder-icon"></i>
+  <ion-content class="padding">
+      <div class="list" >
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Nombre</span>
+            <input type="text" placeholder="Nombre" ng-model="data.name">
+          </label>
+        
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Apellido</span>
+            <input type="text" placeholder="Apellido" ng-model="data.lastName">
+          </label>
+          
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Elige tu nombre de usuario</span>
+            <input type="text" placeholder="Username" ng-model="data.username">
+          </label>
+          
+          <label class="item item-input item-floating-label">
+            <span class="input-label">Email</span>
+            <input type="text" placeholder="Example@gmail.com" ng-model="data.email">           
+          </label>
+          
+      </div>
+      
+      <div class="list">
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Password</span>
+              <input type="Password" placeholder="Password"  ng-model="data.pass1">
+          </label>
+          
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Repeat Password</span>
+              <input type="Password" placeholder="Repeat Password" ng-model="data.pass2">
+          </label>
+      </div>
+                 
+      <div class="list">
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Sexo
+            </div>
+            <select ng-model="data.sexo">
+              <option>Masculino</option>
+              <option selected>Femenino</option>
+              <option>Otro</option>
+            </select>
+          </label>
+      </div>
+        
+      <div class="list">
+            <label class="item item-input">
+              <span class="input-label">Fecha de Nacimiento</span>
+              <input type="date" ng-model="data.fecha">
+            </label>
+      </div>
+      
+      <button class="button button-block icon-left ion-person-add button-positive" ng-click="addUser(data)" >Done</button>
+  </ion-content>
+</ion-view>

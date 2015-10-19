@@ -12,11 +12,11 @@ var userActual
 
 angular.module('starter')
 
-
+/*------------------------------------------------------------------------------------*/
 .controller('AppCtrl', function() {})
+/*------------------------------------------------------------------------------------*/
 .controller('DashCtrl', function() {})
-
-
+/*------------------------------------------------------------------------------------*/
 .controller('LoginCtrl', function($scope, $state, 
                                   $http, $ionicPopup) {
     $scope.data = {};
@@ -48,36 +48,30 @@ angular.module('starter')
     };
 })
 
+/*------------------------------------------------------------------------------------*/
 .controller('RegistroCtrl', function($scope, $state, 
-                                  $http, $ionicPopup) {
+                                  $http, $ionicPopup,
+                                      servicioWeb) {
     $scope.data = {};
-    
     $scope.addUser = function(data){
-        if(data.username == undefined || data.password == undefined){
-           popUp('Error', 'Campos vacíos', $ionicPopup);
-        }else{
-            popUp('Usuario agregado', 
-                  'Usuario: '+data.username+'<br>Agregado con éxito' , 
-                  $ionicPopup);
-            arrayUser.push({
-                username: data.username,
-                password: data.password,
-                list: [{
-                    n:'testList',
-                    d: 'Productos varios',
-                    t: '16/10/2015'
-               }]
-            });
-            $state.go('login',{}, {reload: true});
-        }        
+        var result = servicioWeb.registerUser(data);
+        popUp(result.title, result.msj, $ionicPopup);
+        if(result.state){
+            $state.go('login',{}, {reload: true});            
+        }
+            
     };   
 })
 
+/*------------------------------------------------------------------------------------*/
 .controller('InitCtrl', function($scope, $state, 
-                                  $http, $ionicPopup) {
+                                  $http, $ionicPopup,
+                                 servicioWeb) {
     
     $scope.data = {};
     $scope.arrayListas = userActual.list;
+    console.log('se llamó a la api');
+    servicioWeb.getMovies();    
     
     $scope.newList = function(){
          popUpNewList($scope, $ionicPopup, function(res){             
